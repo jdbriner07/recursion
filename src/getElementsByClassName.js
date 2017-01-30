@@ -5,25 +5,19 @@
 
 // But instead we're going to implement it from scratch:
 var getElementsByClassName = function(className) {
-	bodyObject = document.body;
-	var acc = [];
-	if (bodyObject.classList.contains(className)){
-		acc.push(bodyObject);
-	}
-	acc.push(checker(bodyObject, className));
-	console.log(acc);
-};
+  var result = [];
 
-var checker = function(bodyObject, className) {
-	children = bodyObject.childNodes;
-	if (children === undefined){
-		return 1;
-	}
-	if(!children[0].classList){
-		bodyObject.removeChild(bodyObject.firstChild);
-	}
-	if(children[0].classList){
-		
-		return 1;
-	}
+  function check(element, result) {
+    var children = element.children;
+    var parts = element.className.split(' ');
+    if(parts.indexOf(className) >= 0){
+      result.push(element);
+    }
+    for(var i = 0; i < children.length; i++) {
+      inspect(children[i], result);
+    }
+  }
+
+  check(document.body, result);
+  return result;
 }
