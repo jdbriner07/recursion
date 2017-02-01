@@ -14,7 +14,7 @@ var getElementsByClassName = function(className) {
       result.push(element);
     }
     for(var i = 0; i < children.length; i++) {
-      inspect(children[i], result);
+      check(children[i], result);
     }
   }
 
